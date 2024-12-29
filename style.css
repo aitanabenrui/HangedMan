@@ -141,8 +141,16 @@ h3{
 }
 
 @media only screen and (max-width:900px){ /* media query */
+
+    body{
+        overflow-y: hidden; /* capacidad de desplazarse en la pantalla, hidden no deja desplazarte */
+    }
     #hanged{
         width: 50%;
+    }
+    #slots h2{
+        padding-block: 0;
+        padding-bottom: 10px;
     }
 } 
 

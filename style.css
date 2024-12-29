@@ -135,3 +135,9 @@ h3{
     color: red;
 }
 
+@media only screen and (max-width:900px){
+    #hanged{
+        width: 50%;
+    }
+} /* media query */
+

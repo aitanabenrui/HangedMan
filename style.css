@@ -78,7 +78,7 @@ esto es bueno para evitar conflictos si .restartButton contiene otros elementos 
     border: none;
     padding: 10px 20px;
     margin: 20px;
-    cursor: url(images/lapiz_resized.png) 0 31, auto;
+    cursor: url(images/ereaser_resized.png) 0 31, auto;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -111,6 +111,7 @@ input[type='text']:focus{ /* esto elimina la linea del margen que googlee pone d
 input[type='submit']:hover, #randomWord:hover{ /* esta forma de selección es para que no se aplique a inputs que no tengan el tipo 'submit' */
     background-color: #fffc3c7f;
     text-align: center;
+    cursor: url(images/marker_resized.png) 0 31, auto;
 }
 
 #randomWord{

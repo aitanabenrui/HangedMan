@@ -93,18 +93,36 @@ const hangedMan = (letter, button) =>{ //le estoy pasando la letara de cada bot�
                 imgHangedMan.src = `images/7.png`;
                 resetButton.classList.remove('inv'); //le decimos que se muestre el botón de resetear
                 //en esta parte del código quiero que las letras que no se hayan puesto aparezcan en rojo
-                slotArray.forEach((slot, index)=>{ //hacemos que para cada indice del slotArray
+
+                /* slotArray.forEach((slot, index)=>{ //hacemos que para cada indice del slotArray
                     if(slot == '_'){ //si en el slot hay _ entonces lo sustituimos por la letra que se encuentra en el wordArray en su misma posición (mismo indice)
                         slotArray[index] = `<span class="red">${wordArray[index]}<span>`; //creamos un span para que no modifique la palabra y le añadimos la clase red
                     }
-                })
+                    return slot; 
+                }) */
+
+                    //alternativa al bloque de comentario de arriba, usamos un map para crear un nuevo array con las condiciones, 
+                    //El método map crea un nuevo array basado en la transformación que definimos, asegurando que:
+                    //Solo se modifica el contenido de los elementos que no han sido acertados (_).
+                    //Los elementos que ya contienen letras acertadas permanecen intactos.
+                    //por qué no usar forEach: forEach recorre un array y ejecuta una función sobre cada elemento. No devuelve nada. Por tanto, cualquier modificación en el array debe hacerse directamente modificando sus elementos
+                    //al modificar el array directamente es más facil cometer errores, sobreescribir valores o procesar índices incorrectos
+                    slotArray = slotArray.map((slot, index) => { //modificamos el valor de slotArray asignando un nuevo valor, en este caso el resultado de map del mismo slotArray
+                        // Si el slot no ha sido acertado ('_'), mostrar la letra en rojo
+                        if (slot === '_') {
+                            return `<span class="red">${wordArray[index]}</span>`;
+                        }
+                        // Si ya está acertado, dejarlo tal cual
+                        return slot;
+                    });
+
                 slots.innerHTML = `<h2>${slotArray.join(' ')}</h2>`; //aquí le decimos que reemplazamos el valor que tenía antes slots por el nuevo slotArrayJoin
 
                 //quiero ahora deshabilitar los botones con letras mayúsculas
                 const buttons = document.querySelectorAll('button'); //todos los botones con la propiedad button
 
                 //aquí vamos a hacer que los botones de letras se deshabiliten si has perdido para que no puedas volver a pulsar
-                buttons.forEach(btn =>{ //para cada botón se obtiene su texto y se eliminan los espacios ectra con trim
+                buttons.forEach(btn =>{ //para cada botón se obtiene su texto y se eliminan los espacios extra con trim
                     const textButton = btn.textContent.trim(); // Usamos textContent para obtener el texto del botón
                     if (textButton.length === 1 && ((textButton >= 'A' && textButton <= 'Z') || textButton === 'Ñ')) { // Comprueba si es una sola letra mayúscula
                         btn.disabled = true;

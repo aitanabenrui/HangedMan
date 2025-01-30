@@ -109,15 +109,37 @@ input[type='text']:focus{ /* esto elimina la linea del margen que googlee pone d
 }
 
 input[type='submit']:hover, #randomWord:hover{ /* esta forma de selección es para que no se aplique a inputs que no tengan el tipo 'submit' */
-    background-color: #fffc3c7f;
-    text-align: center;
     cursor: url(images/marker_resized.png) 0 31, auto;
+}
+
+input[type='submit']:hover{
+    background-color: rgb(255, 248, 112, 0.663);
 }
 
 #randomWord{
     margin-top: 5px;
+    position: relative;
+    overflow: hidden;
 }
 /* botón de palabra random */
+
+/* animación de subrrayado */
+#randomWord::before{
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 248, 112, 0.663);
+    transition: left 0.4s ease-in-out;
+}
+
+#randomWord:hover::before{
+    left: 0;
+}
+
 
 h3{
     font-family: 'Patrick Hand', Arial, sans-serif; 
